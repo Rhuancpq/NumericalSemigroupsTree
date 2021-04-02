@@ -12,6 +12,7 @@ private:
     unordered_map<int, bool> ht;
 public:
     MinGenSet(set<int> gen);
+    MinGenSet(const MinGenSet *min);
     MinGenSet(){}
     bool insertGenerator(int x);
     set<int> getGenerators();

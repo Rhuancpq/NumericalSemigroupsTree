@@ -21,3 +21,8 @@ bool MinGenSet::insertGenerator(int x){
 set<int> MinGenSet::getGenerators(){
     return this->generators;
 }
+
+MinGenSet::MinGenSet(const MinGenSet *min){
+    this->generators = set<int>(min->generators);
+    this->ht = unordered_map<int, bool>(min->ht);
+}

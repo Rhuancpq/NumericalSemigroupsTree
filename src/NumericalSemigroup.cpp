@@ -19,6 +19,12 @@ NumericalSemigroup::NumericalSemigroup(set<int> gen){
     this->min_generators = new MinGenSet(gen);
 }
 
+NumericalSemigroup::NumericalSemigroup(NumericalSemigroup *x){
+    this->apery = set<int>(x->apery);
+    this->gapset = set<int>(x->gapset);
+    this->min_generators = new MinGenSet(x->min_generators);
+}
+
 NumericalSemigroup::~NumericalSemigroup(){
     delete this->min_generators;
 }
@@ -31,6 +37,10 @@ set<int>  NumericalSemigroup::getGapset(){
 
 }
 
-set<int>  NumericalSemigroup::getMinimalGenerators(){
+int NumericalSemigroup::getMultiplicity(){
+    return * this->min_generators->getGenerators().begin();
+}
 
+set<int>  NumericalSemigroup::getMinimalGenerators(){
+    return this->min_generators->getGenerators();
 }
