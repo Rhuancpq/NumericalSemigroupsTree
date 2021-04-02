@@ -13,7 +13,7 @@ private:
 public:
     MinGenSet(set<int> gen);
     MinGenSet(){}
-    void insertGenerator();
+    bool insertGenerator(int x);
     set<int> getGenerators();
 };
 

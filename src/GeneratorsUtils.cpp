@@ -32,7 +32,7 @@ void findAperry(set<int> *C){
     C->erase(0);
 }
 
-bool testMinimality(set<int> *C, int x, unordered_map<int, bool>* ht){
+bool testMinimality(const set<int> *C, int x, unordered_map<int, bool>* ht){
     set<int, greater<int>> q;
     unordered_map<int, bool> pre;
     q.insert(x);

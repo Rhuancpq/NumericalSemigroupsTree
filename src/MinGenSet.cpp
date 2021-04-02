@@ -9,10 +9,15 @@ MinGenSet::MinGenSet(set<int> gen){
     this->generators = gen;
 }
 
-void MinGenSet::insertGenerator(){
-
+bool MinGenSet::insertGenerator(int x){
+    if(testMinimality(&this->generators, x, &this->ht)){
+        this->generators.insert(x);
+        return true;
+    }else{
+        return false;
+    }
 }
 
 set<int> MinGenSet::getGenerators(){
-
+    return this->generators;
 }
