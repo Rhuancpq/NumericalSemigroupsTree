@@ -12,10 +12,23 @@ MinGenSet::MinGenSet(set<int> gen){
 bool MinGenSet::insertGenerator(int x){
     if(testMinimality(&this->generators, x, &this->ht)){
         this->generators.insert(x);
+        int max = *this->generators.rbegin();
+        for (int i = x; i <= max; i += x)                 
+            this->ht[i] = true;
         return true;
     }else{
         return false;
     }
+}
+
+void MinGenSet::removeGenerator(int x){
+    int max = *this->generators.rbegin();
+    for (int i = 1; i <= max/x; i++){
+        if(this->generators.count(i) != 0)
+            continue;
+        this->ht[i*x] = false;
+    }                 
+    this->generators.erase(x);
 }
 
 set<int> MinGenSet::getGenerators(){

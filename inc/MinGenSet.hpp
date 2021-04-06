@@ -15,6 +15,7 @@ public:
     MinGenSet(const MinGenSet *min);
     MinGenSet(){}
     bool insertGenerator(int x);
+    void removeGenerator(int x);
     set<int> getGenerators();
 };
 
