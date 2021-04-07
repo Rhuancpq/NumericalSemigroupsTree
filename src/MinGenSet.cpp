@@ -24,7 +24,7 @@ bool MinGenSet::insertGenerator(int x){
 void MinGenSet::removeGenerator(int x){
     int max = *this->generators.rbegin();
     for (int i = 1; i <= max/x; i++){
-        if(this->generators.count(i) != 0)
+        if(i != x and this->generators.count(i) != 0)
             continue;
         this->ht[i*x] = false;
     }                 
