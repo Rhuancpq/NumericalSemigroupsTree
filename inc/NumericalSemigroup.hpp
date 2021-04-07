@@ -9,17 +9,20 @@ using namespace std;
 
 class NumericalSemigroup{
 private:
-    set<int> gapset;
+    set<int> gapset, apery;
+    int f, c;
     MinGenSet* min_generators;
-    set<int> apery;
+    void updateElements();
 public:
     NumericalSemigroup(vector<int> gen);
     NumericalSemigroup(set<int> gen);
     NumericalSemigroup(int gen[], int size);
-    NumericalSemigroup(NumericalSemigroup *x);
+    NumericalSemigroup(const NumericalSemigroup *x);
     ~NumericalSemigroup();
+    bool makeSonOf(int x);
     set<int> getApery();
-    int getMultiplicity();
+    int getMultiplicity() const;
+    int getConductor() const;
     set<int> getGapset();
     set<int> getMinimalGenerators();
 };

@@ -32,7 +32,8 @@ void NSTree::root(){
 }
 
 NumericalSemigroup * son(const NumericalSemigroup* s, int x, int g){
-    // Returns a son of SN, with SN / {x}
+    NumericalSemigroup * sx = new NumericalSemigroup(s);
+    // TODO
 }
 
 void NSTree::traverse(){
@@ -48,7 +49,8 @@ void NSTree::traverse(){
 
             set<int> gen = s->getMinimalGenerators();
             for(int x: gen){
-                leafs.push_back(son(s, x, this->actual_g));
+                // Tem que adicionar só se for minimal e maior igual ao condutor
+                // leafs.push_back(son(s, x, this->actual_g));
             }
         }
         this->actual_g++;
