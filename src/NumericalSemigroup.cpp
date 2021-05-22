@@ -68,22 +68,7 @@ void NumericalSemigroup::createDs(){
 
     // TODO find better upper limit
     int max_n = 3 * *min_gen.rbegin();
-    for (int i = 1; i <= max_n; i++){
-        if(this->min_gen.count(i) == 1){
-            continue;
-        }
-
-        for (int j = 1; j <= i/2; j++){
-            if(this->ds[j] and this->ds[i-j])
-                this->ds[i]++;
-        }
-
-        if(this->ds[i] != 0){
-            this->ds[i]++;
-        }else {
-            this->gapset.insert(i);
-        }
-    }
+    this->growDs(1, max_n);
 }
 
 void NumericalSemigroup::updateElements(){
