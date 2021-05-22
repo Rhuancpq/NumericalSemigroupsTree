@@ -1,6 +1,5 @@
 #include "NSTree.hpp"
 #include "NumericalSemigroup.hpp"
-#include "MinGenSet.hpp"
 #include <set>
 #include <stack>
 
@@ -31,26 +30,25 @@ void NSTree::root(){
     this->leafs.push_back(sn);
 }
 
-NumericalSemigroup * son(const NumericalSemigroup* s, int x, int g){
+NumericalSemigroup * son(const NumericalSemigroup* s, int x){
     NumericalSemigroup * sx = new NumericalSemigroup(s);
-    // TODO
+    sx->makeSonOf(x);
+    return sx;
 }
 
 void NSTree::traverse(){
     while(this->actual_g != this->goal_g){
-        stack<NumericalSemigroup *, vector<NumericalSemigroup *>> 
-        stack(this->leafs);
+        vector<NumericalSemigroup *> new_leafs(this->leafs.begin(), 
+        this->leafs.end());
 
-        this->leafs.clear();
-
-        while(!stack.empty()){
-            NumericalSemigroup* s = stack.top();
-            stack.pop();
-
-            set<int> gen = s->getMinimalGenerators();
-            for(int x: gen){
+        for(auto x : this->leafs){
+            set<int> gen = x->getMinimalGenerators();
+            for(int gi: gen){
                 // Tem que adicionar só se for minimal e maior igual ao condutor
                 // leafs.push_back(son(s, x, this->actual_g));
+                if (gi >= x->getConductor()){
+                    new_leafs.push_back(son(x, gi));
+                }
             }
         }
         this->actual_g++;
