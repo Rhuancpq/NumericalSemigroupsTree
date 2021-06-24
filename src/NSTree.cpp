@@ -38,8 +38,7 @@ NumericalSemigroup * son(const NumericalSemigroup* s, int x){
 
 void NSTree::traverse(){
     while(this->actual_g != this->goal_g){
-        vector<NumericalSemigroup *> new_leafs(this->leafs.begin(), 
-        this->leafs.end());
+        vector<NumericalSemigroup *> new_leafs;
 
         for(auto x : this->leafs){
             set<int> gen = x->getMinimalGenerators();
@@ -52,6 +51,7 @@ void NSTree::traverse(){
             }
         }
         this->actual_g++;
+        this->leafs = new_leafs;
     }
 }
 
